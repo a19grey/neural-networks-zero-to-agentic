@@ -18,7 +18,7 @@ alwaysApply: true
 - Every new file gets a top-of-file docstring: purpose, and a short usage example
 - Prefer explicit over implicit — no magic imports, no star imports
 - Use `pathlib.Path` instead of `os.path` string manipulation
-- Prefer functional code over OOP where possible — plain functions, pure transforms, and explicit data flow. ML libraries (e.g. `nn.Module`) require OOP; our own code should default to functions unless a class clearly earns its keep
+- Prefer functional code over OOP where possible — plain functions, pure transforms, and explicit data flow. ML libraries (e.g. `nn.Module`) require OOP; our own code should default to functional.
 
 ## Notebooks
 
