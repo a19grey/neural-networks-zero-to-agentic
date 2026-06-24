@@ -1,0 +1,33 @@
+---
+description: Core conventions for this 90-day ML self-study project
+alwaysApply: true
+---
+
+# ML Project Conventions
+
+## Repo Structure
+
+- Phase code lives in `phase{N}-{name}/week{N}-{name}/`
+- Write-ups live in `docs/`
+- Never commit model weights, checkpoints, or data files (see `.gitignore`)
+- Push notebooks after every session; commit message should name the lecture or concept
+
+## Code Style
+
+- Python 3.11+; use type hints on all function signatures
+- Every new file gets a top-of-file docstring: purpose, and a short usage example
+- Prefer explicit over implicit — no magic imports, no star imports
+- Use `pathlib.Path` instead of `os.path` string manipulation
+
+## Notebooks
+
+- Each notebook has a title cell (markdown) with: lecture name, date, key concept
+- Keep cells short and linear — one concept per cell block
+- Clear all outputs before committing (reduces diff noise)
+- Name files: `{lecture-slug}_{short-description}.ipynb` e.g. `lecture1_micrograd.ipynb`
+
+## Experiments
+
+- Log every training run to W&B with at minimum: model name, dataset, lr, batch size, epochs
+- Save hyperparameters as a config dict at the top of training scripts, not scattered inline
+- Always set a random seed for reproducibility (`torch.manual_seed(42)`)

@@ -1,0 +1,36 @@
+---
+description: Jupyter notebook conventions for lecture notes and experiments
+globs: **/*.ipynb
+alwaysApply: false
+---
+
+# Notebook Conventions
+
+## Cell Order
+
+Every notebook should follow this structure:
+1. **Title cell** (markdown): lecture name, date, 1-sentence summary
+2. **Imports cell**: all imports together at the top
+3. **Config cell**: hyperparameters, paths, seeds — nothing magic inline
+4. **Content cells**: one concept per block, markdown explanation before code
+
+## Markdown Cells
+
+Add a markdown cell before any non-trivial code block explaining:
+- What this cell does
+- Why (the intuition, not just what the code says)
+
+## Before Committing
+
+- Run "Restart & Run All" to verify clean execution top-to-bottom
+- Clear outputs: `jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace notebook.ipynb`
+- Or use: Kernel → Restart & Clear Output → save
+
+## Naming
+
+`{lecture-slug}_{short-description}.ipynb`
+
+Examples:
+- `lecture1_micrograd.ipynb`
+- `lecture3_mlp_hyperparams.ipynb`
+- `week5_qlora_first_run.ipynb`

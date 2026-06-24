@@ -1,0 +1,60 @@
+---
+description: PyTorch patterns and conventions for this project
+globs: **/*.py
+alwaysApply: false
+---
+
+# PyTorch Patterns
+
+## Device Handling
+
+Always resolve device once and pass it explicitly — never hardcode `"cuda"` or `"cpu"`:
+
+```python
+device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
+model = model.to(device)
+x = x.to(device)
+```
+
+## Training Loop
+
+Prefer explicit train/eval mode toggling:
+
+```python
+model.train()
+for batch in train_loader:
+    optimizer.zero_grad()
+    loss = criterion(model(x), y)
+    loss.backward()
+    optimizer.step()
+
+model.eval()
+with torch.no_grad():
+    val_loss = criterion(model(x_val), y_val)
+```
+
+## Checkpointing
+
+Save the full training state so runs are resumable:
+
+```python
+torch.save({
+    "epoch": epoch,
+    "model_state_dict": model.state_dict(),
+    "optimizer_state_dict": optimizer.state_dict(),
+    "loss": loss,
+}, "checkpoints/run_{run_name}_epoch{epoch}.pt")
+```
+
+## Shape Comments
+
+Add shape comments on tensor operations when the shapes aren't obvious:
+
+```python
+# x: (B, T, C) — batch, sequence length, embedding dim
+x = self.attn(x)  # (B, T, C)
+```
+
+## No Silent Failures
+
+Never catch broad exceptions around forward passes. Let shape mismatches crash loudly.
