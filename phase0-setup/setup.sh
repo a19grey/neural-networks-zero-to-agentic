@@ -35,16 +35,12 @@ else
 fi
 
 echo ""
-echo "=== Step 3: Set up project venv and install wandb ==="
-PROJ_DIR="$(cd "$(dirname "$0")" && pwd)"
+echo "=== Step 3: Set up project venv and install dependencies ==="
+PROJ_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$PROJ_DIR"
 
-if [ ! -d ".venv" ]; then
-  uv venv
-fi
-
-uv pip install wandb
-echo "✓ wandb installed"
+uv sync
+echo "✓ dependencies installed (see pyproject.toml)"
 
 echo ""
 echo "=== All done! ==="

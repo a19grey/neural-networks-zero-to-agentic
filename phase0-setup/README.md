@@ -35,36 +35,29 @@ uv --version
 
 ---
 
-## Step 2 — Create the project virtual environment
+## Step 2 — Install project dependencies
 
 From the root of this repo:
 
 ```bash
 cd path/to/neural-networks-course
-uv venv
+uv sync
 ```
 
-This creates a `.venv` folder using Python 3.12. Activate it:
+This reads `pyproject.toml`, creates `.venv` if needed, installs pinned deps from `uv.lock`, and activates nothing automatically — run `source .venv/bin/activate` when you want the venv on your `PATH`.
 
-```bash
-source .venv/bin/activate
-```
+Your prompt will show `(.venv)` after activation. Do that in every new terminal for this project.
 
-Your prompt will now show `(.venv)` at the start. You need to activate the venv every time you open a new terminal in this project.
+Dependencies live in `pyproject.toml`. Add new ones with `uv add <package>` (updates the lockfile for you).
 
 ---
 
-## Step 3 — Install wandb into the venv
+## Step 3 — Verify wandb
 
 With the venv active:
 
 ```bash
-uv pip install wandb
-```
-
-Verify:
-
-```bash
+source .venv/bin/activate
 python -c "import wandb; print(wandb.__version__)"
 # expected: 0.28.x (or similar)
 ```

@@ -1,0 +1,22 @@
+# Dependency manifest for this course repo.
+# Recreate the environment from scratch:
+#   uv sync
+# Add a new package:
+#   uv add torch
+
+[project]
+name = "neural-networks-course"
+version = "0.1.0"
+description = "Self-directed neural networks course — micrograd to multi-agent systems"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "graphviz>=0.21",
+    "jupyter>=1.0",
+    "matplotlib>=3.11.0",
+    "numpy>=2.4.6",
+    "wandb>=0.28",
+]
+
+[tool.uv]
+package = false

@@ -50,6 +50,7 @@ Full roadmap: [`90-day-curriculum-checklist.md`](90-day-curriculum-checklist.md)
 
 ## Stack
 
+- **Env:** uv (`pyproject.toml` + `uv sync` for reproducible installs)
 - **Core ML:** PyTorch, Hugging Face Transformers / TRL / PEFT
 - **Training:** Unsloth (QLoRA), Weights & Biases
 - **RAG:** LlamaIndex / LangChain, Langfuse
